@@ -1,16 +1,19 @@
 import { Component } from '@angular/core';
+import { CalendarService } from '../../calendar.service';
+import { CommonModule } from '@angular/common';
 
-import dayjs, { Dayjs } from 'dayjs';
-dayjs().format()
 
 @Component({
   selector: 'app-calendar-01',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './calendar-01.component.html'
 })
 export class Calendar01Component {
-
-  
+days: any;
+ 
+  constructor(
+    public calendarService: CalendarService
+  ) {}
 
 }
