@@ -2,7 +2,7 @@
     <div class="flex gap-3 justify-center
      [&>button]:bg-slate-200 [&>button]:rounded-sm [&>button]:text-slate-600 [&>button]:px-2 [&>button]:font-semibold">
         <button (click)="prevMonth()"> &lt; </button>
-        <div class="text-lg text-black">{{year}}-{{month}}</div>
+        <div class="text-lg text-black">{{year}}-{{month +  1}}</div>
         <button (click)="nextMonth()"> &gt; </button>
     </div>
 
@@ -14,8 +14,8 @@
 
     <div class="grid grid-cols-7 grid-rows-6">
         @for (day of calendar; track $index) {
-        <div class="bg-white h-[78px] pt-2 pl-2 border-b-[1px] border-r-[1px] border-[#E6E6E6] "
-            [class.bg-slate-100]="day.month !== month"
+        <div class="bg-white h-[78px] pt-2 pl-2 border-b-[1px] border-r-[1px] border-[#E6E6E6]"
+            [class.bg-[#f2f4f7]]="day.month !== month"
             [class.text-slate-500]="day.month !== month"
             [class.text-blue-500]="day.dayOfWeek === 5 && day.month === month"
             [class.text-red-500]="day.dayOfWeek === 6 && day.month === month">
