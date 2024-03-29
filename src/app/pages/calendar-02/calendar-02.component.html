@@ -1,1 +1,43 @@
-<p>calendar-02 works!</p>
+<!-- calendar -->
+<div class="flex flex-col w-full p-[3rem] h-[88%]">
+    <!-- calendar_wrap -->
+    <div class="calendar_wrap">
+        <!-- month_tit -->
+        <div class="month_name grid grid-cols-3 w-full items-center px-4 py-6">
+            <div class="flex justify-start text-1xl pb-1">{{ coreDate.get('year') }}년</div>
+            <div class="flex justify-center items-center px-2">
+                <button (click)="prevMonth(1)" class="px-2 w-[2rem]"> &lt; </button>
+                <div class="px-2 text-2xl ">{{ coreDate.get('month') + 1 }}월</div>
+                <button (click)="nextMonth(1)" class="px-2 w-[2rem]"> &gt; </button>
+            </div>
+            <div class="flex justify-end"><button (click)="goToToday()">Today</button></div>
+        </div>
+
+        <!-- month_detail -->
+        <div class="grid grid-rows ">
+            <div class="grid grid-cols-7 bg-slate-100">
+                @for (day of dayName; track $index) {
+                <div class="text-center border-r-2 border-white py-1">{{ day }}</div>
+                }
+            </div>
+            <div class="grid grid-cols-7 border-l-2 border-slate-100">
+                <!-- 달력의 날짜 -->
+                @for (date of dates; track $index) {
+                <div class="h-[12.4vh] p-3 border-r-2 border-b-2 border-[#F3F4F6] overflow-hidden">
+                    <button (click)="goToToday()" class="flex flex-col justify-start">
+                        @if (isCurrentMonth(date)) {
+                        <span class="w-6 h-6 text-sm mb-2 rounded-full" [class.bg-red-200]="isToday(date)"
+                            [class.border-l-2]="isFirstColumn($index)" [class.text-white]="isToday(date)"
+                            [class.border-red-300]="isSelectedDate(date)" [class.border-2]="isSelectedDate(date)">
+                            {{ date.date() }}
+                        </span>
+                        }
+                    </button>
+                </div>
+                }
+
+
+            </div>
+
+        </div>
+    </div>
