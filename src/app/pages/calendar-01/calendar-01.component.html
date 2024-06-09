@@ -1,1 +1,15 @@
-<p>calendar-01 works!</p>
+<div class="flex justify-center items-center gap-2 py-4">
+    <span class="text-3xl">{{ coreDate.get('year') }}년</span>
+    <span class="text-3xl">{{ coreDate.get('month') + 1}}월</span>
+</div>
+<div class="grid grid-cols-7 p-2">
+    @for (day of dayNames; track $index) {
+        <div  class="flex items-center justify-center p-2 text-gray-500 bg-slate-50">{{ day }}</div>
+    }
+    @for (date of dates; track $index) {
+        <div class="flex flex-col bg-white h-[7rem] p-2 border-r-2 border-b-2 border-slate-50">
+            <span class="flex items-center justify-center w-6 h-6 text-sm rounded-full"
+            [ngClass]="{'bg-red-500 text-white': isToday(date)}">{{ date.date() }}</span>
+        </div>
+    }
+</div>
