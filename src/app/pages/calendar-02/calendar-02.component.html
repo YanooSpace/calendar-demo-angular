@@ -1,1 +1,23 @@
-<p>calendar-02 works!</p>
+<div class="flex justify-between items-center px-10">
+    <div class="flex items-center gap-5 py-6 text-base text-slate-400">
+        <button (click)="changeYear(-1)">&lt;&lt;</button>
+        <button (click)="changeMonth(-1)">&lt;</button>
+        <span class="text-3xl text-black">{{ coreDate.get('year') }}년 {{ coreDate.get('month') + 1 }}월</span>
+        <button (click)="changeMonth(1)">&gt;</button>
+        <button (click)="changeYear(1)">&gt;&gt;</button>
+    </div>
+    <button class="bg-slate-300 p-2 rounded-md" (click)="goToToday()">오늘</button>
+</div>
+<div class="grid grid-cols-7 p-2">
+    @for (day of dayNames; track $index) {
+    <div class="flex items-center justify-center p-2 text-gray-500 bg-slate-50">{{ day }}</div>
+    }
+    @for (date of dates; track $index) {
+    <div class="flex flex-col bg-white h-[7rem] p-2 border-r-2 border-b-2 border-slate-50">
+        @if (isCurrentMonth(date)) {
+            <span class="flex items-center justify-center w-6 h-6 text-sm rounded-full"
+                [ngClass]="{'bg-red-500 text-white': isToday(date)}">{{ date.date() }}</span>
+        }
+    </div>
+    }
+</div>
